@@ -1,0 +1,33 @@
+.btn__link {
+    color: #EA7F28;
+    background: none;
+    border: none;
+    padding: 8px 12px;
+}
+.btn__link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.btn__link:disabled {
+    cursor: not-allowed;
+    color: #4A4A4A;
+    text-decoration: none;
+}
+.btn__link:focus {
+    outline: none;
+}
+.btn {
+    background: #EA7F28;
+    color: #EDEDED;
+    cursor: pointer;
+    width: 128px;
+    height: 32px;
+    aspect-ratio: 128/32;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 2px;
+}
+.btn:focus {
+    background: #D37324;
+    outline: none;
+}

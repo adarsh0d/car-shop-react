@@ -1,0 +1,15 @@
+.menu {
+    display: flex;
+}
+.menu__link {
+    color: #4A4A4A;
+    font-size: 18px;
+    text-decoration: none;
+    padding-right: 24px
+}
+.menu__link:hover{
+    text-decoration: none;
+}
+li:last-child .menu__link {
+    padding-right: 0;
+}

@@ -1,13 +1,13 @@
 import React, {FunctionComponent} from 'react';
-
+import styles from './Card.module.css'
 type CardProps = {
-
+    className?: string
 }
-const Card: FunctionComponent<CardProps> = ({children}) => {
+const Card: FunctionComponent<CardProps> = ({className = ``, children}) => {
     return (
-        <article>
+        <div className={`${styles.card} ${className}`}>
             {children}
-        </article>
+        </div>
     )
 }
 

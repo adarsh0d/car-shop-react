@@ -1,0 +1,9 @@
+.page__heading {
+    font-weight: 700;
+    font-size: 18px;
+    padding-bottom: 12px;
+}
+.cars__list {
+    padding: 0 0 0 24px;
+    flex: 1;
+}

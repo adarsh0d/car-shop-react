@@ -1,0 +1,49 @@
+.select {
+    padding: 12px;
+    margin: 12px 0;
+    border: 1px solid #EDEDED;
+    border-radius: 2px;
+    min-width: 300px;
+    display: flex;    
+}
+.select span {
+    flex: 1
+}
+.select__option {
+    background: none;
+    border: 1px solid #EDEDED;
+    padding: 8px 12px; 
+    text-align: left;
+}
+.select__options {
+    margin-bottom: 12px;
+}
+.select__option:hover {
+    cursor: pointer;
+    color: #EDEDED;
+    background: #EA7F28;
+    padding: 8px 12px;
+}
+.select__option:focus {
+    outline: none;
+}
+.select__option[aria-selected="true"] {
+    color: #EDEDED;
+    background: #EA7F28;
+}
+.triangle__up {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid #EDEDED;
+}
+.triangle__down {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #EDEDED;
+}

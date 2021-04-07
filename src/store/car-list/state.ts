@@ -4,8 +4,8 @@ import SelectOption from "../../types/SelectOption";
 interface CarState {
     colors: SelectOption[];
     manufacturers: SelectOption[];
-    selectedManufacturer?: string, 
-    selectedColor?: string,
+    selectedManufacturer: SelectOption, 
+    selectedColor: SelectOption,
     cars: Array<Car>,
     pageNumber?: number,
     totalCount: number,
@@ -20,7 +20,15 @@ const initState: CarState = {
     pageNumber: 1,
     totalCount: 0,
     totalPageCount: 0,
-    isLoading: false
+    isLoading: true,
+    selectedManufacturer: {
+        value: '',
+        text: 'All Manufacturers'
+    },
+    selectedColor: {
+        value: '',
+        text: 'All Colors'
+    }
 }
 
 export { initState };

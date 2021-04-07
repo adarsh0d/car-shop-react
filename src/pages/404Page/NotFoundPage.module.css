@@ -1,0 +1,19 @@
+.page__container {
+    margin: 40px auto;
+    width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: calc( 100vh - 160px);
+}
+.page__heading {
+    margin-top: 24px;
+    font-size: 32px;
+    font-weight: 900;
+}
+.page__summary {
+    font-size: 18px;
+    text-align: center;
+    line-height: 48px;
+}

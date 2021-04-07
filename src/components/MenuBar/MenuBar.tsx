@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import MenuBarLink from '../../types/MenuBarLink';
-
+import styles from './MenuBar.module.css'
 
 type MenuBarProps = {
     options: Array<MenuBarLink>
@@ -9,9 +9,9 @@ type MenuBarProps = {
 const MenuBar: FunctionComponent<MenuBarProps> = ({options}) => {
     return (
         <nav data-testid="menu">
-            <ul>
+            <ul className={styles.menu}>
                 {options.map((option: MenuBarLink, i: number) => 
-                    <li key={i}><a href={option.url}>{option.text}</a></li>
+                    <li key={i}><a className={styles.menu__link} href={option.url}>{option.text}</a></li>
                 )}
             </ul>
         </nav>

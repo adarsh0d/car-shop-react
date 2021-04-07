@@ -26,3 +26,9 @@ export const fetchManufacturers = (): Promise<ManufacturerData> => {
    
     return axios.get(url)
 }
+
+export const fetchCar = (stock: string): Promise<{data:{car: Car}}> => {
+    let url = `${baseUrl}/cars/${stock}`
+   
+    return axios.get(url)
+}

@@ -7,8 +7,7 @@ import CarListPageContext from '../../store/car-list/context';
 import SelectOption from '../../types/SelectOption';
 
 const ManufacturerList: FunctionComponent = () => {
-    const initValue: Array<SelectOption> = [];
-    const [ manufacturers, setManufacturers] = useState(initValue)
+    const [ manufacturers, setManufacturers] = useState([] as Array<SelectOption>)
     const { state, selectManufacturer } = useContext(CarListPageContext)
     useEffect(()=> {
         (async() => {

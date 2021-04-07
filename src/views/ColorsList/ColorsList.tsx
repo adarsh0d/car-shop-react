@@ -6,8 +6,7 @@ import CarListPageContext from '../../store/car-list/context';
 import SelectOption from '../../types/SelectOption';
 
 const ColorsList: FunctionComponent = () => {
-    const initValue: Array<SelectOption> = [];
-    const [colors, setColors] = useState(initValue)
+    const [colors, setColors] = useState([] as Array<SelectOption>)
     useEffect(()=> {
         (async() => {
             const colorObject: ColorData = await fetchColors();

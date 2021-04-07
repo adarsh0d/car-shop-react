@@ -1,0 +1,29 @@
+:root{
+    --border: #ededed;
+}
+.page__footer {
+    font-size: 12px;
+    height: 80px;
+    justify-content: center;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-top: 1px solid var(--border);
+}
+
+.page__header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.header__left {
+    flex: 1;
+}
+.header__right {
+    justify-self: flex-end;
+    display: flex;
+}

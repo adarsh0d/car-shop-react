@@ -1,0 +1,18 @@
+.cardlist__container {
+    display: flex;
+    flex-direction: column;
+}
+.list__heading {
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+.card__list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 24px 0;
+}
+.list__pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

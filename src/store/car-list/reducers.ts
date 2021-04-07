@@ -6,7 +6,7 @@ const CarListPageReducer = (prevState: CarState, action: CarActionType): CarStat
         case 'FETCH_CARS':
             return {
                 ...prevState,
-                isLoading: true,
+                isLoading: true
             };
         case 'SET_CARS':
             return {
@@ -32,7 +32,8 @@ const CarListPageReducer = (prevState: CarState, action: CarActionType): CarStat
         case 'SET_PAGE_NUMBER': {
             return {
                 ...prevState,
-                pageNumber: action.payload
+                pageNumber: action.payload,
+                isLoading: true
             };
         }
         default:

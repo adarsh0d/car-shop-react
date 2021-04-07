@@ -1,0 +1,42 @@
+:root {
+    --base: #EDEDED
+}
+.card__skeleton {
+    margin: 8px 0;
+    display: flex;
+    padding: 12px;
+}
+
+.skeleton__img {
+    aspect-ratio: 1/1;
+    height: 80px;
+    width: 80px;
+    background: var(--base);
+}
+.skeleton__details {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    flex: 1;
+    padding: 0 24px;
+}
+.skeleton__paragraph {
+    background: var(--base);
+    width: 50%;
+    height: 20px;
+    margin-bottom: 8px;
+}
+.skeleton__link {
+    background: var(--base);
+    width: 20%;
+    height: 20px;
+    margin-bottom: 2px;
+}
+.skeleton__title {
+    margin: 0;
+    padding: 0;
+    background: var(--base);
+    width: 50%;
+    height: 25px;
+    margin-bottom: 2px;
+}

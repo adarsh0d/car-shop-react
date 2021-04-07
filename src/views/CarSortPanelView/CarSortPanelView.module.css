@@ -1,0 +1,10 @@
+.sort__panel {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    padding: 24px;
+}
+.btn__filter {
+    margin-top: 12px;
+    align-self: flex-end;
+}

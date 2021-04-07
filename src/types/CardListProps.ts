@@ -4,7 +4,7 @@ type CardListProps<T extends Object> = {
     totalCount: number,
     totalPageCount: number,
     updateCurrentPage:  (pageNumber: number) => void,
-    renderList: Function
+    renderList: Function,
 }
 
 export default CardListProps

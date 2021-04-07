@@ -1,0 +1,24 @@
+.card__car {
+    margin: 8px 0;
+    display: flex;
+    padding: 12px;
+}
+
+.car__img {
+    aspect-ratio: 1/1;
+}
+.car__details {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    padding: 0 24px;
+}
+.car__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+.car__summary {
+    margin: 12px 0;
+}
