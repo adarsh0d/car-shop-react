@@ -6,6 +6,7 @@
 
 .car__img {
     aspect-ratio: 1/1;
+    margin-right: 12px;
 }
 .car__details {
     display: flex;

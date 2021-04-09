@@ -1,12 +1,14 @@
-import React, { FunctionComponent, useContext, useEffect, useState} from 'react';
+import React, { FunctionComponent, useEffect, useState} from 'react';
 import Select from '../../components/Select/Select';
 import ColorData from '../../interfaces/ColorData';
 import { fetchColors } from '../../services/car.service';
-import CarListPageContext from '../../store/car-list/context';
 import SelectOption from '../../types/SelectOption';
-
-const ColorsList: FunctionComponent = () => {
-    const [colors, setColors] = useState([] as Array<SelectOption>)
+type ColorsListProps = {
+    selectColor:(selectedColor: SelectOption) => void
+}
+const ColorsList: FunctionComponent<ColorsListProps> = ({selectColor}) => {
+    const [colors, setColors] = useState([] as Array<SelectOption>)  
+    
     useEffect(()=> {
         (async() => {
             const colorObject: ColorData = await fetchColors();
@@ -16,7 +18,6 @@ const ColorsList: FunctionComponent = () => {
             setColors(selectOptions);
         })()
     }, [])
-    const { state, selectColor } = useContext(CarListPageContext)
     return(
         <Select 
             default={{
@@ -27,7 +28,6 @@ const ColorsList: FunctionComponent = () => {
             options={colors} 
             labelText="Color" 
             ariaLabel="Select Car Color" 
-            selectedValue={state.selectedColor} 
             handleChange={selectColor}>
         </Select>
     )

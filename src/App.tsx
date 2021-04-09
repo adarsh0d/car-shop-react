@@ -11,12 +11,14 @@ import NotFoundPage from './pages/404Page/NotFoundPage';
 function App() {
   return (
     <Router>
-        <Switch>
-          <Route exact path="/" component={CarListPage}/>
-          <Route path="/cars" component={CarListPage}/>
-          <Route path="/car/:stockNumber" component={CarDetailsPage}/>
-          <Route component={NotFoundPage} />
-        </Switch>
+        <div data-testid="router">
+          <Switch>
+            <Route exact path="/" component={CarListPage}/>
+            <Route path="/cars" component={CarListPage}/>
+            <Route path="/car/:stockNumber" component={CarDetailsPage}/>
+            <Route component={NotFoundPage} />
+          </Switch>
+        </div>
     </Router>
   );
 }

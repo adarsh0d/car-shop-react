@@ -1,14 +1,15 @@
-import React, { FunctionComponent, useContext, useEffect, useState } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import Select from '../../components/Select/Select';
 import Manufacturer from '../../interfaces/Manufacturer';
 import ManufacturerData from '../../interfaces/ManufacturerData';
 import { fetchManufacturers } from '../../services/car.service';
-import CarListPageContext from '../../store/car-list/context';
 import SelectOption from '../../types/SelectOption';
-
-const ManufacturerList: FunctionComponent = () => {
+type ManufacturerListProps = {
+    selectManufacturer:(selectedManufacturer: SelectOption) => void
+}
+const ManufacturerList: FunctionComponent<ManufacturerListProps> = ({selectManufacturer}) => {
     const [ manufacturers, setManufacturers] = useState([] as Array<SelectOption>)
-    const { state, selectManufacturer } = useContext(CarListPageContext)
+    
     useEffect(()=> {
         (async() => {
             const manufacturerObject: ManufacturerData = await fetchManufacturers();
@@ -28,10 +29,8 @@ const ManufacturerList: FunctionComponent = () => {
             options={manufacturers}
             labelText="Manufacturer"
             ariaLabel="Select Car Manufacturer"
-            selectedValue={state.selectedManufacturer}
             handleChange={selectManufacturer}>
         </Select>
     )
 }
-
 export default ManufacturerList;

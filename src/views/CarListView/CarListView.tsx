@@ -1,47 +1,66 @@
-import React, { FunctionComponent, useContext } from 'react';
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import CardList from '../../components/CardList/CardList';
 import Car from '../../interfaces/Car';
-import CarListPageContext from '../../store/car-list/context';
-import CardListProps from '../../types/CardListProps';
+import CarData from '../../interfaces/CarData';
+import CarFilterObj from '../../interfaces/CarFilterObj';
+import { fetchCars } from '../../services/car.service';
 import CarCard from '../CarCard/CarCard';
 import SkeletonCard from '../SkeletonCard/SkeletonCard';
 import styles from './CarListView.module.css';
 
-const CarList: FunctionComponent<CardListProps<Car>> = React.memo((props) => (
-    <CardList
-        {...props}
-    >
-    </CardList>
-))
 const SkeletonCardList: FunctionComponent = React.memo(() => (    
-    <ul>
+    <ul data-testid="skeleton">
         {Array(10).fill(0).map((el: number, i: number) => {
             return (<li key={i}><SkeletonCard></SkeletonCard></li>)
         })}
     </ul>
 ))
-const CarListView: FunctionComponent = () => {
-    const { state, updateCurrentPage } = useContext(CarListPageContext)
+type CarListViewProps = {
+    filterObj: CarFilterObj
+} 
+interface CarsInterface {
+    cars: Car[],
+    pageNumber: number,
+    totalCarsCount: number,
+    totalPageCount: number
+}
+const CarListView: FunctionComponent<CarListViewProps> = ({ filterObj}) => {
+    const [carObj, setCarObj] = useState({
+        cars: [],
+        pageNumber: 1,
+        totalCarsCount: 0,
+        totalPageCount: 0
+    } as CarsInterface)
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        (async() => {
+            const responseObj: CarData = await fetchCars(carObj.pageNumber, filterObj);
+            setCarObj((carObj) => ({...carObj, ...responseObj.data}));
+            setIsLoading(false);
+        })()
+    }, [carObj.pageNumber, filterObj])
+
+   
     return (
         <section className={styles.cars__list}>
             <h1 className={styles.page__heading}>Available cars</h1>
-            {!state.isLoading ? (
-                <CarList
-                    list={state.cars}
-                    data-testid="car-list"
-                    pageNumber={state.pageNumber}
-                    totalCount={state.totalCount}
-                    totalPageCount={state.totalPageCount}
-                    updateCurrentPage={updateCurrentPage}
+            {!isLoading ? (
+                <CardList
+                    list={carObj.cars}
+                    totalCount={carObj.totalCarsCount}
+                    totalPageCount={carObj.totalPageCount}
+                    updateCurrentPage={ (pageNumber: number): void => {setCarObj((carObj) => ({...carObj, pageNumber})) }}
                     renderList={(listItems: Car[]) => (
                         <>
                             {listItems.map((item: Car, id) => {
-                                return (<CarCard key={id} car={item}></CarCard>);
+                                return (<li key={id} ><CarCard car={item}></CarCard></li>);
                             })}
                         </>
                     )}
                 >
-                </CarList>
+                </CardList>
             ) : (
                 <SkeletonCardList></SkeletonCardList>
                 )

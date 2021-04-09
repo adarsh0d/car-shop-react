@@ -1,12 +1,9 @@
-import { createContext } from "react";
-import SelectOption from "../../types/SelectOption";
+import React, { createContext } from "react";
+import CarActionType from "./actions";
 import { initState } from "./state";
 
 const CarListPageContext = createContext({
     state: initState,
-    updateCurrentPage: (pageNumber: number): void => { },
-    selectManufacturer: (selectedManufacturer: SelectOption): void => {},
-    selectColor: (selectedColor: SelectOption): void => {},
-    fetchCars: (): void => {}
+    dispatch: (action: CarActionType) => {}
 });
 export default CarListPageContext;

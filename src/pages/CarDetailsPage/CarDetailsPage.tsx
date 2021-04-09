@@ -20,7 +20,7 @@ const CarListPage: FunctionComponent<RouteComponentProps<CarDetailsProps>> = ({ 
 
     useEffect(() => {
         (async() => {
-            const carObj: {data: {car: Car}} = await fetchCar(stockNumber);            
+            const carObj: {data: {car: Car}} = await fetchCar(stockNumber); 
             setCar(carObj.data.car);
         })()
     }, [stockNumber])
@@ -32,7 +32,7 @@ const CarListPage: FunctionComponent<RouteComponentProps<CarDetailsProps>> = ({ 
                     </section>
                     <section className={styles.car__content}>
                         <section className={styles.car__details}>
-                            <h1 className={styles.page__heading}>
+                            <h1 data-testid="heading" className={styles.page__heading}>
                                 {car?.modelName}
                             </h1>
                             <p className={styles.car__summary}>Stock # {car?.stockNumber} - {convertToDecimals} {car?.mileage?.unit.toUpperCase()} - {car?.fuelType} - {convertToTitleCase} </p>
@@ -44,12 +44,12 @@ const CarListPage: FunctionComponent<RouteComponentProps<CarDetailsProps>> = ({ 
                             </p>
                         </section>
                         <Card className={styles.car__save__card}>
-                            <p>
+                            <p data-testid="savebtn">
                                 If you like this car, click the button and 
                                 save it in your collection of favourite 
-                                items
+                                items.
                             </p>
-                            <Button className={styles.car__save__btn} text="Save" handleClick={() => {}}></Button>
+                            <Button  className={styles.car__save__btn} text="Save" handleClick={() => {}}></Button>
                         </Card>
                     </section>
                 </section>
