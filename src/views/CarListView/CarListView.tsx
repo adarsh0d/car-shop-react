@@ -33,36 +33,28 @@ const CarListView: FunctionComponent<CarListViewProps> = ({ filterObj }) => {
        
     const mountedRef = useRef(false)
     const [isLoading, setIsLoading] = useState(true)
-    const [initialPageNumber, setInitialPageNumber] = useState(1)
-    const [currentPage, setCurrentPageNumber] = useState(1); 
+    const [currentPageNumber, setCurrentPageNumber] = useState(1)
 
   
-    // effect just for tracking mounted state
     useEffect(() => {
       mountedRef.current = true
       return () => {
         mountedRef.current = false
       }
     }, [])
-    useEffect(() => {
-        (async() => {
-            const responseObj: CarData = await fetchCars(currentPage, filterObj);
-            if (mountedRef.current) {
-                setCarObj((carObj) => ({ ...carObj, ...responseObj?.data }));
-                setIsLoading(false);
-            }
-        })()
-    }, [currentPage])
+
+    const getData = useCallback(async(pageNumber: number) => {
+        const responseObj: CarData = await fetchCars(pageNumber, filterObj);
+        if (mountedRef.current) {
+            setCarObj((carObj) => ({ ...carObj, ...responseObj?.data }));
+            setIsLoading(false);
+            setCurrentPageNumber(pageNumber);
+        }      
+    }, [filterObj.selectedColor, filterObj.selectedManufacturer])
 
     useEffect(() => {
-        (async() => { 
-            const responseObj: CarData = await fetchCars(1, filterObj);        
-            if(mountedRef.current) {
-                setCarObj((carObj) => ({ ...carObj, ...responseObj?.data }));
-                setInitialPageNumber(1);
-            }
-        })()
-    }, [filterObj.selectedColor, filterObj.selectedManufacturer])
+        getData(1)
+    }, [getData])
 
     return (
         <section className={styles.cars__list}>
@@ -70,10 +62,10 @@ const CarListView: FunctionComponent<CarListViewProps> = ({ filterObj }) => {
             {!isLoading ? (
                 <CardList
                     list={carObj.cars}
-                    initialPageNumber={initialPageNumber}
+                    currentPageNumber={currentPageNumber}
                     totalCount={carObj.totalCarsCount}
                     totalPageCount={carObj.totalPageCount}
-                    updateCurrentPage={setCurrentPageNumber}
+                    updateCurrentPage={getData}
                     renderList={(listItems: Car[]) => (
                         <>
                             {listItems.map((item: Car, id) => {

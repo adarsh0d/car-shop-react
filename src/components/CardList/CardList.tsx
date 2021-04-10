@@ -3,17 +3,19 @@ import CardListProps from '../../types/CardListProps';
 import Button from '../Button/Button';
 import styles from './CardList.module.css'
 
-const CardList: FunctionComponent<CardListProps<Object>> = ({list, initialPageNumber, totalPageCount, totalCount, updateCurrentPage, renderList}) => {
+const CardList: FunctionComponent<CardListProps<Object>> = ({list, currentPageNumber, totalPageCount, totalCount, updateCurrentPage, renderList}) => {
     const [pageNumber, setPageNumber] = useState(1);
     const updateSelected = (selected: number) => {
+        if(pageNumber !== selected) {
             setPageNumber(selected);
             updateCurrentPage(selected);
+        }
     }
     useEffect(() => {
-        if(initialPageNumber && initialPageNumber !== pageNumber) {
-            setPageNumber(initialPageNumber)
+        if(currentPageNumber && currentPageNumber !== pageNumber) {
+            setPageNumber(currentPageNumber)
         }
-    }, []);
+    }, [currentPageNumber]);
     return (
         <section className={styles.cardlist__container}>
             <span className={styles.list__heading} aria-label={`Showing ${list.length} of ${totalCount} results`}>{`Showing ${list.length} of ${totalCount} results`}</span>

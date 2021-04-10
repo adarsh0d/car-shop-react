@@ -24,7 +24,7 @@ const CardListElement: FunctionComponent<CardListProps> = (props) => {
             }]}
             totalCount={45}
             totalPageCount={5}
-            initialPageNumber={props.pageNumber}
+            currentPageNumber={props.pageNumber}
 
             updateCurrentPage={mockedFun}
             renderList={(list: Array<Car>) => (

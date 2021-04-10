@@ -1,6 +1,6 @@
 type CardListProps<T extends Object> = {
     list: Array<T>,
-    initialPageNumber?: number,
+    currentPageNumber?: number,
     totalCount: number,
     totalPageCount: number,
     updateCurrentPage:  (pageNumber: number) => void,
