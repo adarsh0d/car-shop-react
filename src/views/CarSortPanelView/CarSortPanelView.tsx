@@ -1,10 +1,9 @@
 import React, { FunctionComponent, useState } from 'react';
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
-import CarFilterObj from '../../interfaces/CarFilterObj';
-import SelectOption from '../../types/SelectOption';
-import ColorsList from '../ColorsList/ColorsList';
-import ManufacturerList from '../ManufacturerList/ManufacturerList';
+import {Button, Card} from 'components';
+import CarFilterObj from 'interfaces/CarFilterObj';
+import SelectOption from 'types/SelectOption';
+import ColorsList from '../ColorsList';
+import ManufacturerList from '../ManufacturerList';
 import styles from './CarSortPanelView.module.css';
 
 type CartSortPanelProps = {

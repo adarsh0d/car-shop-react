@@ -1,9 +1,9 @@
 
 import React, { FunctionComponent } from 'react';
-import AppFrame from '../../components/AppFrame/AppFrame';
-import styles from './NotFoundPage.module.css'
-import Logo from '../../components/Logo/Logo';
 import { Link } from 'react-router-dom';
+
+import { AppFrame, Logo } from 'components';
+import styles from './NotFoundPage.module.css'
 
 const NotFoundPage: FunctionComponent = () => {
    return(

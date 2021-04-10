@@ -1,18 +1,17 @@
-import React, { FunctionComponent, useState} from 'react';
-import AppFrame from '../../components/AppFrame/AppFrame';
-import CarFilterObj from '../../interfaces/CarFilterObj';
+import React, { FunctionComponent, useState } from 'react';
+import { AppFrame } from 'components';
+import CarFilterObj from 'interfaces/CarFilterObj';
 
-import CarListView from '../../views/CarListView/CarListView';
-import CarSortPanelView from '../../views/CarSortPanelView/CarSortPanelView';
+import { CarListView, CarSortPanelView } from 'views';
 
 import styles from './CarListPage.module.css'
 
 const CarListPage: FunctionComponent = () => {
-    const [filterObj, setFilterObj] = useState({selectedColor: '', selectedManufacturer: ''} as CarFilterObj);
+    const [filterObj, setFilterObj] = useState({ selectedColor: '', selectedManufacturer: '' } as CarFilterObj);
     const handleSubmit = (filterObj: CarFilterObj): void => {
         setFilterObj(filterObj);
-    }   
-    return(
+    }
+    return (
         <AppFrame>
             <section className={styles.page__container}>
                 <CarSortPanelView handleSubmit={handleSubmit}></CarSortPanelView>

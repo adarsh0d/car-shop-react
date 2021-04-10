@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import NotFoundPage from './NotFoundPage';
 import { BrowserRouter } from 'react-router-dom';
 
+import NotFoundPage from './NotFoundPage';
 test('should print the heading', () => {
     render(<BrowserRouter><NotFoundPage/></BrowserRouter>);
     const headingElement: HTMLElement = screen.getByTestId('heading');

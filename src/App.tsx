@@ -5,9 +5,7 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
-import CarListPage from './pages/CarListPage/CarListPage';
-import CarDetailsPage from './pages/CarDetailsPage/CarDetailsPage';
-import NotFoundPage from './pages/404Page/NotFoundPage';
+import { CarListPage, CarDetailsPage, NotFoundPage } from 'pages';
 function App() {
   return (
     <Router>

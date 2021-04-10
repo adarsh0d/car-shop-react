@@ -1,7 +1,7 @@
-import React, { FunctionComponent, useMemo } from 'react';
+import React, { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
-import Card from '../../components/Card/Card';
-import Car from '../../interfaces/Car';
+import {Card} from 'components';
+import Car from 'interfaces/Car';
 import styles from './CarCard.module.css'
 type CarProps = {
     car: Car
@@ -9,8 +9,8 @@ type CarProps = {
 const CarCard: FunctionComponent<CarProps> = ({car}) => {
     const mileage = car?.mileage?.number;
     const color = car?.color;
-    const convertToDecimals = useMemo((): string => mileage.toLocaleString("es-ES"), [mileage]);
-    const convertToTitleCase = useMemo((): string => color.charAt(0).toUpperCase() + color.substr(1).toLowerCase(), [color]);
+    const convertToDecimals = (): string => mileage.toLocaleString("es-ES");
+    const convertToTitleCase = (): string => color.charAt(0).toUpperCase() + color.substr(1).toLowerCase();
     const newTo = { 
         pathname: `/car/${car.stockNumber}`
     };

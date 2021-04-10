@@ -1,9 +1,10 @@
 import axios from "axios";
-import Car from "../interfaces/Car";
-import CarData from "../interfaces/CarData";
-import CarFilterObj from "../interfaces/CarFilterObj";
-import ColorData from "../interfaces/ColorData";
-import ManufacturerData from "../interfaces/ManufacturerData";
+import Car from "interfaces/Car";
+import CarData from "interfaces/CarData";
+import CarFilterObj from "interfaces/CarFilterObj";
+import ColorData from "interfaces/ColorData";
+import ManufacturerData from "interfaces/ManufacturerData";
+
 const baseUrl = `https://auto1-mock-server.herokuapp.com/api`
 export const fetchCars = async (pageNumber: number, { selectedManufacturer, selectedColor }: CarFilterObj): Promise<CarData> => {
     let url = `${baseUrl}/cars?page=${pageNumber}`

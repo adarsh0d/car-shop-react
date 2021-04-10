@@ -1,20 +1,20 @@
 import React, { FunctionComponent, useCallback, useEffect, useRef, useState } from 'react';
-import CardList from '../../components/CardList/CardList';
-import Car from '../../interfaces/Car';
-import CarData from '../../interfaces/CarData';
-import CarFilterObj from '../../interfaces/CarFilterObj';
-import { fetchCars } from '../../services/car.service';
-import CarCard from '../CarCard/CarCard';
-import SkeletonCard from '../SkeletonCard/SkeletonCard';
+import { CardList } from 'components';
+import Car from 'interfaces/Car';
+import CarData from 'interfaces/CarData';
+import CarFilterObj from 'interfaces/CarFilterObj';
+import { fetchCars } from 'services/car.service';
 import styles from './CarListView.module.css';
+import CarCard from '../CarCard';
+import SkeletonCard from '../SkeletonCard';
 
-const SkeletonCardList: FunctionComponent = React.memo(() => (
+const SkeletonCardList: FunctionComponent = () => (
     <ul data-testid="skeleton">
         {Array(10).fill(0).map((el: number, i: number) => {
             return (<li key={i}><SkeletonCard></SkeletonCard></li>)
         })}
     </ul>
-))
+)
 type CarListViewProps = {
     filterObj: CarFilterObj
 }

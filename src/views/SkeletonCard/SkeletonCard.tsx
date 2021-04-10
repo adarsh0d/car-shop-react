@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import Card from '../../components/Card/Card';
+import {Card} from 'components';
 import styles from './SkeletonCard.module.css'
 
 const SkeletonCard: FunctionComponent = () => {

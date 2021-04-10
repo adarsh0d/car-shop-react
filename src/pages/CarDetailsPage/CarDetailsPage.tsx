@@ -1,22 +1,19 @@
 
-import React, { FunctionComponent, useEffect, useMemo, useState } from 'react';
-import AppFrame from '../../components/AppFrame/AppFrame';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import {AppFrame, Button, Card} from 'components';
 import { RouteComponentProps } from 'react-router-dom';
-import { fetchCar } from '../../services/car.service';
-
-
+import { fetchCar } from 'services/car.service';
 import styles from './CarDetailsPage.module.css'
-import Car from '../../interfaces/Car';
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
+import Car from 'interfaces/Car';
+
 interface CarDetailsProps {
     stockNumber: string
 }
 const CarListPage: FunctionComponent<RouteComponentProps<CarDetailsProps>> = ({ match }) => {
     const [car, setCar] = useState<Car>({} as Car)    
     const {stockNumber} = match.params;
-    const convertToDecimals =  useMemo((): string => car?.mileage?.number?.toLocaleString("es-ES"), [car]);
-    const convertToTitleCase =  useMemo((): string => car?.color?.charAt(0).toUpperCase() + car?.color?.substr(1).toLowerCase(), [car]);
+    const convertToDecimals =  (): string => car?.mileage?.number?.toLocaleString("es-ES");
+    const convertToTitleCase =  (): string => car?.color?.charAt(0).toUpperCase() + car?.color?.substr(1).toLowerCase();
 
     useEffect(() => {
         (async() => {

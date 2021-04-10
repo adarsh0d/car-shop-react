@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import Select from '../../components/Select/Select';
-import Manufacturer from '../../interfaces/Manufacturer';
-import ManufacturerData from '../../interfaces/ManufacturerData';
-import { fetchManufacturers } from '../../services/car.service';
-import SelectOption from '../../types/SelectOption';
+import {Select} from 'components';
+import Manufacturer from 'interfaces/Manufacturer';
+import ManufacturerData from 'interfaces/ManufacturerData';
+import { fetchManufacturers } from 'services/car.service';
+import SelectOption from 'types/SelectOption';
 type ManufacturerListProps = {
     selectManufacturer:(selectedManufacturer: SelectOption) => void
 }
