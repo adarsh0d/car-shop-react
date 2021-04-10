@@ -8,7 +8,7 @@ import CarSortPanelView from '../../views/CarSortPanelView/CarSortPanelView';
 import styles from './CarListPage.module.css'
 
 const CarListPage: FunctionComponent = () => {
-    const [filterObj, setFilterObj] = useState({} as CarFilterObj);
+    const [filterObj, setFilterObj] = useState({selectedColor: '', selectedManufacturer: ''} as CarFilterObj);
     const handleSubmit = (filterObj: CarFilterObj): void => {
         setFilterObj(filterObj);
     }   

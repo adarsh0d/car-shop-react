@@ -1,10 +1,10 @@
 type CardListProps<T extends Object> = {
     list: Array<T>,
-    initialPage?: number,
+    initialPageNumber?: number,
     totalCount: number,
     totalPageCount: number,
     updateCurrentPage:  (pageNumber: number) => void,
-    renderList: Function,
+    renderList: Function
 }
 
 export default CardListProps

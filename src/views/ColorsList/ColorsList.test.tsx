@@ -1,21 +1,18 @@
 import React from 'react';
 import axios from 'axios';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import ColorsList from './ColorsList';
-import CarListPageContext from '../../store/car-list/context';
-import { CarState, initState } from '../../store/car-list/state';
 import { BrowserRouter } from 'react-router-dom';
 
 jest.mock('axios');
-const mockedAxios1 = axios as jest.Mocked<typeof axios>;
-describe("LoadCars", () => {
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+describe("Load Colors", () => {
    
     afterEach(() => {
-        jest.clearAllMocks();
+        jest.clearAllMocks();        
     });
-
     test('should change selected color', async () => {
-        mockedAxios1.get.mockResolvedValue(
+        mockedAxios.get.mockResolvedValue(
         {
             data: {
                 colors: ['red', 'orange']
@@ -23,18 +20,26 @@ describe("LoadCars", () => {
         const mockedDispatch = jest.fn();
         render(
             <BrowserRouter>
-                <CarListPageContext.Provider value={{ state: { ...initState,  isLoading: false } as CarState, dispatch: mockedDispatch }}>
-                    <ColorsList />
-                </CarListPageContext.Provider>
+                <ColorsList selectColor={mockedDispatch}/>
             </BrowserRouter>
         );
-        
         const element: HTMLElement = await screen.findByText('All Colors');
         element.click()
         const btnElement: HTMLElement = await screen.findByText('orange');
         btnElement.click()
         expect(mockedDispatch).toHaveBeenCalled();
+        
     });
+
+    test('unmount', () => {
+        const mockedDispatch = jest.fn();
+        const {unmount} = render(
+            <BrowserRouter>
+                <ColorsList selectColor={mockedDispatch}/>
+            </BrowserRouter>
+        );
+        unmount();
+    })
 
 });
 

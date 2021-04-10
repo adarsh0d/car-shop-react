@@ -1,17 +1,16 @@
 import React from 'react';
 import axios from 'axios';
-import { render, screen } from '@testing-library/react';
+import { cleanup, render, screen } from '@testing-library/react';
 import ManufacturerList from './ManufacturerList';
-import CarListPageContext from '../../store/car-list/context';
-import { CarState, initState } from '../../store/car-list/state';
 import { BrowserRouter } from 'react-router-dom';
 
 jest.mock('axios');
 const mockedAxiosw = axios as jest.Mocked<typeof axios>;
-describe("LoadCars", () => {
+describe("Load Manufacturers", () => {
    
-    afterEach(() => {
+    afterEach(async () => {
         jest.clearAllMocks();
+        cleanup();
     });
 
     test('should change selected Manufacturer', async () => {
@@ -37,9 +36,7 @@ describe("LoadCars", () => {
         const mockedDispatch = jest.fn();
         render(
             <BrowserRouter>
-                <CarListPageContext.Provider value={{ state: { ...initState,  isLoading: false } as CarState, dispatch: mockedDispatch }}>
-                    <ManufacturerList />
-                </CarListPageContext.Provider>
+                  <ManufacturerList selectManufacturer={mockedDispatch}/>
             </BrowserRouter>
         );
         
@@ -49,6 +46,15 @@ describe("LoadCars", () => {
         btnElement.click()
         expect(mockedDispatch).toHaveBeenCalled();
     });
+    test('unmount', () => {
+        const mockedDispatch = jest.fn();
+        const {unmount} = render(
+            <BrowserRouter>
+                <ManufacturerList selectManufacturer={mockedDispatch}/>
+            </BrowserRouter>
+        );
+        unmount();
+    })
 
 });
 

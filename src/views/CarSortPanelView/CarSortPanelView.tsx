@@ -7,7 +7,6 @@ import ColorsList from '../ColorsList/ColorsList';
 import ManufacturerList from '../ManufacturerList/ManufacturerList';
 import styles from './CarSortPanelView.module.css';
 
-
 type CartSortPanelProps = {
     handleSubmit: (data: CarFilterObj) => void
 }
@@ -17,14 +16,14 @@ const CarSortPanelView: FunctionComponent<CartSortPanelProps> = ({handleSubmit})
     const [ selectedManufacturer, setSelectedManufacturer ] = useState({} as SelectOption)
     const handleSort = (): void => {
         handleSubmit({
-            selectedColor,
-            selectedManufacturer
+            selectedColor: selectedColor?.value,
+            selectedManufacturer: selectedManufacturer?.value,
         });
     }
 
     return (
         <Card className={styles.sort__panel}>
-           <ColorsList selectColor={setSelectedColor}/>
+            <ColorsList selectColor={setSelectedColor}/>
             <ManufacturerList selectManufacturer={setSelectedManufacturer}/>           
             <Button className={styles.btn__filter} text="Filter" handleClick={handleSort}></Button>
         </Card>

@@ -11,13 +11,17 @@ const ManufacturerList: FunctionComponent<ManufacturerListProps> = ({selectManuf
     const [ manufacturers, setManufacturers] = useState([] as Array<SelectOption>)
     
     useEffect(()=> {
+        let unmounted = false;
         (async() => {
             const manufacturerObject: ManufacturerData = await fetchManufacturers();
             const selectOptions = manufacturerObject?.data?.manufacturers?.map((manufacturer: Manufacturer): SelectOption => {
                 return {text: manufacturer.name, value: manufacturer.name}
             })
-            setManufacturers(selectOptions);
+            if(!unmounted) {
+                setManufacturers(selectOptions);
+            }
         })()
+        return () => { unmounted = true };
     }, [])
     return (
         <Select

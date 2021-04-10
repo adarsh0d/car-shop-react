@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import Select from './Select';
-import SelectOption from '../../types/SelectOption';
-let a: string;
+const mockedFun = jest.fn();
         
 describe("select box", () => {
     beforeEach(() => {
-        render(<Select labelText="Manufacturer" default={{ value: '', text: 'All Manufacturers' }} selectedValue={{ value: '', text: 'All Manufacturers' }} ariaLabel="Select Car Manufacturer" options={[{ value: 'suzuki', text: 'Suzuki' }]} handleChange={(value: SelectOption) => { a = value.text }} />);
-
+        render(<Select labelText="Manufacturer" default={{ value: '', text: 'All Manufacturers' }} ariaLabel="Select Car Manufacturer" options={[{ value: 'suzuki', text: 'Suzuki' }]} handleChange={mockedFun} />);
     })
-
+    afterAll(() => {
+        jest.clearAllMocks()
+    });
     test('should have a Select', () => {
         const selectElement = screen.getByRole('combobox') as HTMLSelectElement;
         expect(selectElement).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("select box", () => {
             bubbles: true,
             cancelable: true,
         }));
-        expect(a).toBe('Suzuki');
+        expect(mockedFun).toHaveBeenCalled();
     });
     test('should show a label', () => {
         const labelElement: HTMLElement = screen.getByText('Manufacturer');

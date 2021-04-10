@@ -10,13 +10,17 @@ const ColorsList: FunctionComponent<ColorsListProps> = ({selectColor}) => {
     const [colors, setColors] = useState([] as Array<SelectOption>)  
     
     useEffect(()=> {
+        let unmounted = false;
         (async() => {
             const colorObject: ColorData = await fetchColors();
             const selectOptions = colorObject?.data?.colors.map((color: string): SelectOption => {
                 return {text: color, value: color}
             })
-            setColors(selectOptions);
+            if(!unmounted) {
+                setColors(selectOptions);
+            }
         })()
+        return () => { unmounted = true };
     }, [])
     return(
         <Select 
